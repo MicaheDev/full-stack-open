@@ -1,11 +1,29 @@
-export type Repository = {
-    id: string;
-    fullName: string;
-    description: string;
-    language: string;
-    forksCount: number;
-    stargazersCount: number;
-    ratingAverage: number;
-    reviewCount: number;
-    ownerAvatarUrl: string;
-  };
+export interface RepositoryResponse {
+  totalCount: number;
+  edges: RepositoryEdge[];
+  pageInfo: PageInfo;
+}
+
+export interface RepositoryEdge {
+  node: Node;
+  cursor: string;
+}
+
+export interface RepositoryNode {
+  id: string;
+  fullName: string;
+  reviewCount: number;
+  ratingAverage: number;
+  forksCount: number;
+  stargazersCount: number;
+  description: string;
+  language: string;
+  ownerAvatarUrl: string;
+}
+
+export interface PageInfo {
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+  startCursor: string;
+  endCursor: string;
+}
