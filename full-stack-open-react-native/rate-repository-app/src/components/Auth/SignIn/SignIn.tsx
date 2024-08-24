@@ -1,20 +1,10 @@
 import React from "react";
 import { Alert } from "react-native";
-import { Formik } from "formik";
-import * as yup from "yup";
 import useSignIn from "../../../hooks/useSignIn";
 import { useNavigate } from "react-router-native";
-import SignInForm from "./SignInForm";
+import SignInContainer from "./SignInContainer";
 
-const validationSchema = yup.object().shape({
-  username: yup.string().required("Username is required"),
-  password: yup.string().required("Password is required"),
-});
 
-const initialValues = {
-  username: "",
-  password: "",
-};
 
 export default function SignIn() {
   const [SignIn] = useSignIn();
@@ -26,7 +16,7 @@ export default function SignIn() {
     try {
       await SignIn({ username, password });
       navigate("/");
-    } catch (e: any) {
+    } catch (e) {
       console.log(e);
 
       Alert.alert("Invalid Credentials");
@@ -34,12 +24,6 @@ export default function SignIn() {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-      validationSchema={validationSchema}
-    >
-      {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
-    </Formik>
+   <SignInContainer onSubmit={onSubmit}/>
   );
 }

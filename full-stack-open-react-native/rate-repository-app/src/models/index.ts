@@ -5,7 +5,7 @@ export interface RepositoryResponse {
 }
 
 export interface RepositoryEdge {
-  node: Node;
+  node: RepositoryNode;
   cursor: string;
 }
 
@@ -23,7 +23,7 @@ export interface RepositoryNode {
 
 export interface PageInfo {
   hasNextPage: boolean;
-  hasPreviousPage: boolean;
+  hasPreviousPage?: boolean;
   startCursor: string;
   endCursor: string;
 }

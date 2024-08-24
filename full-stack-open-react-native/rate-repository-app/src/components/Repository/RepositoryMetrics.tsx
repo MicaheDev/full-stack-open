@@ -28,28 +28,30 @@ export default function RepositoryMetrics({
   }
   return (
     <StyledView className="flex flex-row justify-around">
-      <StyledView className="flex items-center justify-center">
-        <Text className="text-principal font-bold text-lg">
-          {formatNumber(stargazersCount)}
-        </Text>
-        <Text className="text-complementary">Starts</Text>
-      </StyledView>
-      <StyledView className="flex items-center justify-center">
-        <Text className="text-principal font-bold text-lg">
-          {formatNumber(forksCount)}
-        </Text>
-        <Text className="text-complementary">Forks</Text>
-      </StyledView>
-      <StyledView className="flex items-center justify-center">
-        <Text className="text-principal font-bold text-lg">{reviewCount}</Text>
-        <Text className="text-complementary">Reviews</Text>
-      </StyledView>
-      <StyledView className="flex items-center justify-center">
-        <Text className="text-principal font-bold text-lg">
-          {ratingAverage}
-        </Text>
-        <Text className="text-complementary">Rating</Text>
-      </StyledView>
+    <StyledView className="flex items-center justify-center">
+      <Text className="text-principal font-bold text-lg" testID="stars">
+        {formatNumber(stargazersCount)}
+      </Text>
+      <Text className="text-complementary">Stars</Text>
     </StyledView>
+    <StyledView className="flex items-center justify-center">
+      <Text className="text-principal font-bold text-lg" testID="forks">
+        {formatNumber(forksCount)}
+      </Text>
+      <Text className="text-complementary">Forks</Text>
+    </StyledView>
+    <StyledView className="flex items-center justify-center">
+      <Text className="text-principal font-bold text-lg" testID="reviews">
+        {reviewCount}
+      </Text>
+      <Text className="text-complementary">Reviews</Text>
+    </StyledView>
+    <StyledView className="flex items-center justify-center">
+      <Text className="text-principal font-bold text-lg" testID="rating">
+        {ratingAverage}
+      </Text>
+      <Text className="text-complementary">Rating</Text>
+    </StyledView>
+  </StyledView>
   );
 }

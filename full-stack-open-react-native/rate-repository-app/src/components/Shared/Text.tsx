@@ -2,8 +2,7 @@ import { styled } from "nativewind";
 import React, { ReactNode } from "react";
 import {
   Text as NativeText,
-  StyleProp,
-  TextStyle,
+  TextProps as NativeTexProps
 } from "react-native";
 import { platformFont } from "../../utils/theme";
 
@@ -12,13 +11,12 @@ const StyledText = styled(NativeText);
 type TextProps = {
   children: ReactNode;
   className?: string;
-  style?: StyleProp<TextStyle>;
 };
 
 
-export default function Text({ children, className, style }: TextProps) {
+export default function Text({ children, className, ...props }: TextProps & NativeTexProps) {
   return (
-    <StyledText className={`${platformFont} ${className}`} style={style}>
+    <StyledText className={`${platformFont} ${className}`} {...props}>
       {children}
     </StyledText>
   );

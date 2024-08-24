@@ -29,14 +29,14 @@ export default function RepositoryInfo({
       />
 
       <StyledView className="flex flex-col flex-wrap items-start h-full">
-        <Text className="text-principal text-lg font-bold mb-2">
+        <Text className="text-principal text-lg font-bold mb-2" testID="fullname">
           {fullName}
         </Text>
-        <Text className="text-complementary max-w-[80vw] mb-2">
+        <Text className="text-complementary max-w-[80vw] mb-2" testID="description">
           {description}
         </Text>
         <StyledView className="bg-primary p-2 rounded-md mb-2">
-          <Text className="text-white">{language}</Text>
+          <Text className="text-white" testID="language">{language}</Text>
         </StyledView>
       </StyledView>
     </StyledView>
