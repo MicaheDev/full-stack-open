@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react-native";
 import RepositoryListContainer from "../../../components/Repository/RepositoryListContainer";
 import { RepositoryResponse } from "../../../models";
+import { MemoryRouter } from "react-router-native";
 
 describe("<RepositoryList/>", () => {
   describe("<RepositoryListContainer", () => {
@@ -49,7 +50,9 @@ describe("<RepositoryList/>", () => {
       };
 
       render(
-        <RepositoryListContainer repositories={repositories} />
+        <MemoryRouter>
+          <RepositoryListContainer repositories={repositories} />
+        </MemoryRouter>
       );
 
       // debug();

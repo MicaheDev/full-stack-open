@@ -28,3 +28,34 @@ export const GET_CURRENT_USER = gql`
     }
   }
 `;
+
+export const GET_REPOSITORY_DETAILS = gql`
+  query GetRepositoryById($id: ID!) {
+    repository(id: $id) {
+      id
+      fullName
+      description
+      ownerAvatarUrl
+      language
+      stargazersCount
+      forksCount
+      reviewCount
+      ratingAverage
+      url
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
+    }
+  }
+`;

@@ -1,7 +1,7 @@
 import { styled } from "nativewind";
 import { Image } from "react-native";
 import { View } from "react-native";
-import Text from "../Shared/Text";
+import Text from "../../Shared/Text";
 
 const StyledView = styled(View);
 const StyledImage = styled(Image);
@@ -28,11 +28,11 @@ export default function RepositoryInfo({
         height={50}
       />
 
-      <StyledView className="flex flex-col flex-wrap items-start h-full">
-        <Text className="text-principal text-lg font-bold mb-2" testID="fullname">
+      <StyledView className="flex-1 flex flex-col flex-wrap items-start h-full">
+        <Text className="text-principal text-lg font-bold" testID="fullname">
           {fullName}
         </Text>
-        <Text className="text-complementary max-w-[80vw] mb-2" testID="description">
+        <Text className="text-complementary mb-2" testID="description">
           {description}
         </Text>
         <StyledView className="bg-primary p-2 rounded-md mb-2">

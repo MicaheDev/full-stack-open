@@ -1,11 +1,12 @@
-import { FlatList, View } from "react-native";
+import { FlatList, TouchableOpacity, View } from "react-native";
 import {
   RepositoryEdge,
   RepositoryNode,
   RepositoryResponse,
 } from "../../models";
 import { styled } from "nativewind";
-import RepositoryItem from "./RepositoryItem";
+import { useNavigate } from "react-router-native";
+import RepositoryCard from "./Card/RepositoryCard";
 
 const StyledView = styled(View);
 
@@ -16,6 +17,8 @@ export default function RepositoryListContainer({
 }: {
   repositories: RepositoryResponse;
 }) {
+  const navigate = useNavigate();
+
   // Get the nodes from the edges array
   const repositoryNodes: RepositoryNode[] = repositories
     ? repositories.edges.map((edge: RepositoryEdge) => edge.node)
@@ -25,7 +28,15 @@ export default function RepositoryListContainer({
     <FlatList
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
-      renderItem={({ item }) => <RepositoryItem {...item} />}
+      renderItem={({ item }) => (
+        <TouchableOpacity
+          onPress={() => {
+            navigate(item.id);
+          }}
+        >
+          <RepositoryCard {...item} />
+        </TouchableOpacity>
+      )}
       keyExtractor={(item) => item.id}
     ></FlatList>
   );

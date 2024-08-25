@@ -19,6 +19,8 @@ export interface RepositoryNode {
   description: string;
   language: string;
   ownerAvatarUrl: string;
+  url?: string;
+  reviews?: Reviews;
 }
 
 export interface PageInfo {
@@ -26,4 +28,25 @@ export interface PageInfo {
   hasPreviousPage?: boolean;
   startCursor: string;
   endCursor: string;
+}
+
+export interface Reviews {
+  edges: ReviewsEdge[];
+}
+
+export interface ReviewsEdge {
+  node: ReviewsNode;
+}
+
+export interface ReviewsNode {
+  id: string;
+  text: string;
+  rating: number;
+  createdAt: Date;
+  user: User;
+}
+
+export interface User {
+  id: string;
+  username: string;
 }
