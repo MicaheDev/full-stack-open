@@ -1,6 +1,20 @@
 {
   "extends": ["expo/tsconfig.base"],
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "baseUrl": "src",
+    "paths": {
+      "@components": ["components/index"],
+      "@views": ["views/index"],
+      "@repositories/*": ["components/repositories/*"],
+      "@reviews/*": ["components/reviews/*"],
+      "@authentication/*": ["components/authentication/*"],
+      "@models": ["models/index"],
+      "@utils/*": ["utils/*"],
+      "@context/*": ["context/*"],
+      "@graphql/*": ["graphql/*"],
+      "@hooks/*": ["hooks/*"]
+    }
   }
+  
 }

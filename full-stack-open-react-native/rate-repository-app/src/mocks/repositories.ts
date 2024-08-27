@@ -1,6 +1,6 @@
-import { Repository } from "../models";
+import { RepositoryNode } from "@models";
 
-export const repositories: Repository[] = [
+export const repositories: RepositoryNode[] = [
     {
       id: "jaredpalmer.formik",
       fullName: "jaredpalmer/formik",

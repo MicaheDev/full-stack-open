@@ -8,7 +8,7 @@ const useRepository = () => {
   console.log(repositoryId)
 
   const { loading, error, data } = useQuery(GET_REPOSITORY_DETAILS, {
-    variables: { id: repositoryId },
+    variables: { id: repositoryId }, fetchPolicy: 'cache-and-network'
   });
 
   const repository = data?.repository;

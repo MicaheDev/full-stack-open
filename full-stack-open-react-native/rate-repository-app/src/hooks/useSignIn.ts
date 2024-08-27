@@ -1,7 +1,7 @@
 import { useApolloClient, useMutation } from "@apollo/client";
-import { AUTHENTICATE_USER } from "../graphql/mutations";
+import { AUTHENTICATE_USER } from "@graphql/mutations";
 import { useContext } from "react";
-import AuthStorageContext from "../context/AuthStorageContext";
+import AuthStorageContext from "@context/AuthStorageContext";
 
 type Credentials = {
   username: string;
