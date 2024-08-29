@@ -2,14 +2,18 @@ import { gql } from '@apollo/client';
 
 export const GET_REPOSITORIES = gql`
   query Repositories(
-    $orderBy: AllRepositoriesOrderBy
+    $after: String
     $orderDirection: OrderDirection
+    $orderBy: AllRepositoriesOrderBy
     $searchKeyword: String
+    $first: Int
   ) {
     repositories(
-      orderBy: $orderBy
+      after: $after
       orderDirection: $orderDirection
+      orderBy: $orderBy
       searchKeyword: $searchKeyword
+      first: $first
     ) {
       edges {
         node {
@@ -23,23 +27,48 @@ export const GET_REPOSITORIES = gql`
           reviewCount
           ratingAverage
         }
+        cursor
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
       }
     }
   }
 `;
 
 export const GET_CURRENT_USER = gql`
-  query GetCUrrentUser {
+  query GetCUrrentUser($includeReviews: Boolean = false) {
     me {
       id
       username
+      reviews @include(if: $includeReviews) {
+        totalCount
+        edges {
+          node {
+            text
+            rating
+            id
+            createdAt
+            user {
+              id
+              username
+            }
+            repository {
+              fullName
+              id
+            }
+          }
+        }
+      }
     }
   }
 `;
 
 export const GET_REPOSITORY_DETAILS = gql`
-  query GetRepositoryById($id: ID!) {
-    repository(id: $id) {
+  query Repository($repositoryId: ID!, $first: Int, $after: String) {
+    repository(id: $repositoryId) {
       id
       fullName
       description
@@ -50,18 +79,25 @@ export const GET_REPOSITORY_DETAILS = gql`
       reviewCount
       ratingAverage
       url
-      reviews {
+      reviews(first: $first, after: $after) {
+        totalCount
+        pageInfo {
+          hasNextPage
+          endCursor
+          startCursor
+        }
         edges {
           node {
-            id
             text
             rating
+            id
             createdAt
             user {
               id
               username
             }
           }
+          cursor
         }
       }
     }

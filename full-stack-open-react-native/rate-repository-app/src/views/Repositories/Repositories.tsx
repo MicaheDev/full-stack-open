@@ -11,14 +11,21 @@ export default function Repositories() {
   });
   const [keyword, setKeyword] = useState('');
 
-  // Aplicar debounce al keyword
   const [debouncedKeyword] = useDebounce(keyword, 500);
 
-  // Pasar el debouncedKeyword en lugar de keyword directamente
-  const { repositories, error } = useRepositories({
-    order,
-    keyword: debouncedKeyword,
-  });
+  const variables = {
+    searchKeyword: debouncedKeyword,  // use debounce searchKeyword
+    orderBy: order.orderBy,
+    orderDirection: order.orderDirection,
+    first: 8,
+  };
+  const { repositories, error, fetchMore } = useRepositories(variables);
+
+  const onEndReach = () => {
+    console.log('You have reached the end of the list');
+    fetchMore();
+  };
+
   if (error) {
     return <ErrorView error={error} />;
   }
@@ -30,6 +37,7 @@ export default function Repositories() {
       setOrder={setOrder}
       keyword={keyword}
       setKeyword={setKeyword}
+      onEndReach={onEndReach}
     />
   );
 }

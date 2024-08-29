@@ -1,8 +1,8 @@
-import { View, FlatList } from "react-native";
-import { RepositoryNode, ReviewsEdge, ReviewsNode } from "@models";
-import { styled } from "nativewind";
-import ReviewItem from "./ReviewItem";
-import { RepositoryCard } from "@components";
+import { View, FlatList } from 'react-native';
+import { RepositoryNode, ReviewsEdge, ReviewsNode } from '@models';
+import { styled } from 'nativewind';
+import ReviewItem from './ReviewItem';
+import { RepositoryCard } from '@components';
 
 const StyledView = styled(View);
 
@@ -10,11 +10,14 @@ const ItemSeparator = () => <StyledView className="h-3"></StyledView>;
 
 export default function SingleRepositoryReviewList({
   repository,
+  onEndReach,
 }: {
   repository: RepositoryNode;
+  onEndReach: () => void;
 }) {
-  const reviewNodes: ReviewsNode[] = repository.reviews
-    ? repository.reviews.edges.map((edge: ReviewsEdge) => edge.node)
+
+  const reviewNodes: ReviewsNode[] = repository?.reviews
+    ? repository?.reviews.edges.map((edge: ReviewsEdge) => edge.node)
     : [];
 
   const repo = repository;
@@ -23,7 +26,7 @@ export default function SingleRepositoryReviewList({
     <>
       <FlatList
         data={reviewNodes}
-        renderItem={({ item }) => <ReviewItem {...item} />}
+        renderItem={({ item }) => <ReviewItem review={item} />}
         keyExtractor={({ id }) => id}
         ListHeaderComponent={() => (
           <View>
@@ -32,6 +35,7 @@ export default function SingleRepositoryReviewList({
           </View>
         )}
         ItemSeparatorComponent={ItemSeparator}
+        onEndReached={onEndReach}
       />
     </>
   );

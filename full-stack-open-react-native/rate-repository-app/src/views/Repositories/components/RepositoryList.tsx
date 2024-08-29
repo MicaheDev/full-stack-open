@@ -13,11 +13,10 @@ const ItemSeparator = () => <StyledView className="h-3"></StyledView>;
 type RepositoryListProps = {
   repositories: RepositoryResponse;
   order: { orderBy: string; orderDirection: string };
-  setOrder: Dispatch<
-    SetStateAction<{ orderBy: string; orderDirection: string }>
-  >;
+  setOrder: Dispatch<SetStateAction<{ orderBy: string; orderDirection: string }>>;
   keyword: string;
   setKeyword: Dispatch<SetStateAction<string>>;
+  onEndReach: () => void
 };
 
 
@@ -35,7 +34,7 @@ export default class RepositoryListContainer extends Component<RepositoryListPro
     );
   };
   render() {
-    const { repositories } = this.props;
+    const { repositories, onEndReach } = this.props;
 
     const repositoryNodes: RepositoryNode[] = repositories
       ? repositories.edges.map((edge: RepositoryEdge) => edge.node)
@@ -48,6 +47,7 @@ export default class RepositoryListContainer extends Component<RepositoryListPro
         ItemSeparatorComponent={ItemSeparator}
         renderItem={({ item }) => <RepositoryTouchableCard {...item} />}
         keyExtractor={(item) => item.id}
+        onEndReached={onEndReach}
       ></FlatList>
     );
   }

@@ -1,12 +1,12 @@
-import { ScrollView, TouchableOpacity, View } from "react-native";
-import Constants from "expo-constants";
-import { styled } from "nativewind";
-import Text from "./Text";
-import { Link, useNavigate } from "react-router-native";
-import { useContext, useMemo } from "react";
-import { useApolloClient, useQuery } from "@apollo/client";
-import { GET_CURRENT_USER } from "@graphql/queries";
-import AuthStorageContext from "@context/AuthStorageContext";
+import { ScrollView, TouchableOpacity, View } from 'react-native';
+import Constants from 'expo-constants';
+import { styled } from 'nativewind';
+import Text from './Text';
+import { Link, useNavigate } from 'react-router-native';
+import { useContext, useMemo } from 'react';
+import { useApolloClient, useQuery } from '@apollo/client';
+import { GET_CURRENT_USER } from '@graphql/queries';
+import AuthStorageContext from '@context/AuthStorageContext';
 
 const StyledView = styled(View);
 const StyledScrollView = styled(ScrollView);
@@ -26,9 +26,9 @@ export default function AppBar() {
     try {
       await authStorage.removeAccessToken();
       client.resetStore();
-      navigate("/signin");
+      navigate('/signin');
     } catch (error) {
-      console.error("Error during logout:", error);
+      console.error('Error during logout:', error);
     }
   };
 
@@ -37,13 +37,13 @@ export default function AppBar() {
       className="bg-secondary w-full h-[100px] px-4 flex flex-row justify-between items-center"
       style={{ paddingTop: Constants.statusBarHeight }}
     >
-      <StyledScrollView className="flex w-full gap-4" horizontal={true}>
-        <Link to="/">
+      <StyledScrollView className="flex w-full gap-4 py-4" horizontal={true}>
+        <Link to="/" className="px-2 py-4">
           <Text className="text-white font-bold text-md">Repositories</Text>
         </Link>
 
         {isLogin && (
-          <Link to="/create-review">
+          <Link to="/create-review" className="px-2 py-4">
             <Text className="text-white font-bold text-md">
               Create a review
             </Text>
@@ -51,19 +51,25 @@ export default function AppBar() {
         )}
 
         {isLogin && (
-          <StyledTouchable onPress={handleLogout}>
+          <Link to="my-reviews" className="px-2 py-4">
+            <Text className="text-white font-bold text-md">My reviews</Text>
+          </Link>
+        )}
+
+        {isLogin && (
+          <StyledTouchable onPress={handleLogout} className="px-2 py-4">
             <Text className="text-white font-bold text-md">Sign Out</Text>
           </StyledTouchable>
         )}
 
         {!isLogin && (
-          <Link to="/signin">
+          <Link to="/signin" className="px-2 py-4">
             <Text className="text-white font-bold text-md">Sign In</Text>
           </Link>
         )}
 
         {!isLogin && (
-          <Link to="/signup">
+          <Link to="/signup" className="px-2 py-4">
             <Text className="text-white font-bold text-md">Sign Up</Text>
           </Link>
         )}

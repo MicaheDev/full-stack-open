@@ -1,17 +1,23 @@
-import useRepository from "@hooks/useRepository";
-import { ErrorView, Loader } from "@components";
-import SingleRepositoryReviewList from "./components/SingleRepositoryReviewList";
+import useRepository from '@hooks/useRepository';
+import { ErrorView } from '@components';
+import SingleRepositoryReviewList from './components/SingleRepositoryReviewList';
 
 export default function SingleRepository() {
-  const { repository, loading, error } = useRepository();
+  const { repository, error, fetchMore } = useRepository();
 
-  if (loading) {
-    return <Loader />;
-  }
+  const onEndReach = () => {
+    console.log('You have reached the end of the list');
+    fetchMore();
+  };
 
   if (error) {
     return <ErrorView error={error} />;
   }
 
-  return <SingleRepositoryReviewList repository={repository} />;
+  return (
+    <SingleRepositoryReviewList
+      repository={repository}
+      onEndReach={onEndReach}
+    />
+  );
 }

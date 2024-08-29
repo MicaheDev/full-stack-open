@@ -9,6 +9,7 @@ import {
   SignUp,
   SingleRepository,
 } from "@views";
+import MyReviews from "views/MyReviews/MyReviews";
 
 const StyledView = styled(View);
 
@@ -21,6 +22,7 @@ export default function Main() {
         <Route path="/signin" element={<SignIn />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/create-review" element={<CreateReview />}></Route>
+        <Route path="/my-reviews" element={<MyReviews />}></Route>
         <Route path="/:repositoryId" element={<SingleRepository />}></Route>
       </Routes>
     </StyledView>

@@ -44,6 +44,7 @@ export interface ReviewsNode {
   rating: number;
   createdAt: Date;
   user: User;
+  repository: {fullName: string, id: string}
 }
 
 export interface User {

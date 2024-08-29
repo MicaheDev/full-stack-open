@@ -32,13 +32,13 @@ export default function RepositoryStats({
       <StyledView className="flex flex-row justify-around mb-4">
         <StyledView className="flex items-center justify-center">
           <Text className="text-principal font-bold text-lg" testID="stars">
-            {formatNumber(stargazersCount)}
+            { stargazersCount && formatNumber(stargazersCount)}
           </Text>
           <Text className="text-complementary">Stars</Text>
         </StyledView>
         <StyledView className="flex items-center justify-center">
           <Text className="text-principal font-bold text-lg" testID="forks">
-            {formatNumber(forksCount)}
+            {forksCount && formatNumber(forksCount)}
           </Text>
           <Text className="text-complementary">Forks</Text>
         </StyledView>
