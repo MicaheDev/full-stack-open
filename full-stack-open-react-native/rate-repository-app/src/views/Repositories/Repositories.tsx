@@ -1,23 +1,35 @@
-import useRepositories from "@hooks/useRepositories";
-import { ErrorView, Loader } from "@components";
-import RepositoryList from "./components/RepositoryList";
-import { useState } from "react";
+import useRepositories from '@hooks/useRepositories';
+import { ErrorView } from '@components';
+import RepositoryList from './components/RepositoryList';
+import { useState } from 'react';
+import { useDebounce } from 'use-debounce';
 
 export default function Repositories() {
   const [order, setOrder] = useState({
-    orderBy: "RATING_AVERAGE",
-    orderDirection: "DESC",
+    orderBy: 'CREATED_AT',
+    orderDirection: 'DESC',
   });
+  const [keyword, setKeyword] = useState('');
 
-  const { repositories, loading, error } = useRepositories({order});
+  // Aplicar debounce al keyword
+  const [debouncedKeyword] = useDebounce(keyword, 500);
 
-  if (loading) {
-    return <Loader />;
-  }
-
+  // Pasar el debouncedKeyword en lugar de keyword directamente
+  const { repositories, error } = useRepositories({
+    order,
+    keyword: debouncedKeyword,
+  });
   if (error) {
     return <ErrorView error={error} />;
   }
 
-  return <RepositoryList repositories={repositories} order={order} setOrder={setOrder} />;
+  return (
+    <RepositoryList
+      repositories={repositories}
+      order={order}
+      setOrder={setOrder}
+      keyword={keyword}
+      setKeyword={setKeyword}
+    />
+  );
 }
