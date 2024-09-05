@@ -1,5 +1,12 @@
 # Full-Stack-Open-TypeScript
 
-In this repository you will find the exercises of the course
+![Course Certificate](https://studies.cs.helsinki.fi/stats/api/certificate/fs-typescript/en/81408743a600e6148581cb37cce7c905)
 
-- all exercises completed
+In this repository, you will find the exercises of the **Full Stack Open** course.
+
+- ✅ All exercises completed
+
+[Verifcation](https://studies.cs.helsinki.fi/stats/api/certificate/fs-typescript/en/81408743a600e6148581cb37cce7c905)
+
+You can find more information about the course at [Full Stack Open Course](https://fullstackopen.com/en/).
+
