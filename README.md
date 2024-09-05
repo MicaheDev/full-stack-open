@@ -1,4 +1,3 @@
-Aquí tienes el README en inglés y español:
 
 ---
 
